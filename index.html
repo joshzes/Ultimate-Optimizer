@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html>
       <head>
-        <link href="font/material-design-icons" rel="stylesheet">
+        <title>Ultimate Optimizer</title>
+        <link rel="icon" href="img/fruit.jpg" type="image/png" /> <!-- change me -->
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/fonts.css">
+        <link type="text/css" rel="stylesheet" href="css/animate.css"/>
+        <link type="text/css" rel="stylesheet" href="css/hover.css"/>
+        <link type="text/css" rel="stylesheet" href="css/index.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       </head>
       <body>
 
         <main>
-        <div class="container">
+        <div id="header">
+            <h4>ULTIMATE OPTIMIZER</h4>
+            <a href="#" class="hvr-underline-from-left" id="dietSolver">[ Diet Problem Solver ]</a>
+        </div>
+        <div class="row container">
 
-            <div id="simplex-container">
-                
+            <div class="col m6 offset-m3 in-container" id="simplex-container">
+                <form>
+                <div class="switch">
+                    <label>
+                      Minimize
+                    <input type="checkbox">
+                    <span class="lever"></span>
+                      Maximize
+                    </label>
+                </div>
+                <input type="text" placeholder="Z = 1a + 2b + 1c - 1d" id="inputFx">
+                <label>subject to: </label> <br/>   
+                <input type="text" placeholder="a, b, c, d >= 0" class="constraint" id="constraint-1">
+                <span><a href="#" id="addConstraint"><i class="material-icons">add_circle_outline</i></a></span>
+                </form>
+                <button class="btn waves-effect waves-light" id="submitSimplex">Solve</button>
+            </div>
+
+            <div class="col m6 offset-m3 in-container hidden" id="tableau-container">
+                <button class="btn waves-effect waves-light" id="editSimplex">Edit Input</button>
             </div>
             
-            <div id="tableau-container">
-                
+            <div class="col m6 offset-m3 in-container hidden" id="diet-container">
+                2
             </div>
             
-            <div id="diet-container">
-                
-            </div>
-            
-            <div id="results-container">
-                
+            <div class="col m6 offset-m3 in-container hidden" id="results-container">
+                2b
             </div>
 
         </div>
         </main>
-
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
       </body>
 </html>

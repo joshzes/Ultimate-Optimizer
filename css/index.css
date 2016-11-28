@@ -1,57 +1,20 @@
 body{
 	flex: 1 0 auto;
 	background-color: #C7EDE4;
-	-webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     overflow: hidden;
     color: #637074;
 }
 
-main{
-	margin-top: 50px;
-}
-
-div#header{
-	text-align: center;
-	display: block;
-	margin: 0 auto;
-}
-
-div#header h4{
-	padding-top: 20px;
-	font-family: bebas;
-	font-size: 90px;
-	line-height: 72%;
-}
-
 div#header a{
-	font-family: fina;
-	font-size: 23px;
 	color: #769FB6;
-}
-
-.in-container{
-	height: 350px;
-	margin-top: 13%;
-	color: #16262E;
-	text-align: center;
-	vertical-align: center;
-}
-
-.hidden{
-	display: none;
-}
-
-.visible{
-	display: block;
-}
-
-::-webkit-input-placeholder, label{
-	color: #808782;
 }
 
 input.constraint{
 	width: 300px;
+}
+
+#addConstraint i{
+	font-size: 19px;
+	vertical-align: text-bottom;
+	color: #28AFB0;
 }

@@ -1,0 +1,50 @@
+main{
+	margin-top: 50px;
+}
+
+div#header{
+	text-align: center;
+	display: block;
+	margin: 0 auto;
+}
+
+div#header h4{
+	padding-top: 20px;
+	font-family: bebas;
+	font-size: 90px;
+	line-height: 72%;
+}
+
+div#header a{
+	font-family: fina;
+	font-size: 23px;
+}
+
+.in-container{
+	height: 330px;
+	margin-top: 10%;
+	color: #16262E;
+	text-align: center;
+	vertical-align: center;
+	overflow-y: auto;
+}
+
+.hidden{
+	display: none;
+}
+
+.visible{
+	display: block;
+}
+
+::-webkit-input-placeholder, label{
+	color: #808782;
+}
+
+.in-container::-webkit-scrollbar{
+	width: 6px;
+}
+
+.in-container::-webkit-scrollbar-thumb{
+	background-color: #808782;
+}

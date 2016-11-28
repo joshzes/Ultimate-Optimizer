@@ -1,0 +1,194 @@
+{
+  "vegetables" : [
+    {
+      "food" : "",
+      "price" : "",
+      "serving": "",
+      "calories": "",
+      "cholesterol": "",
+      "total_fat": "",
+      "carbs": "",
+      "fiber": "",
+      "protein": "",
+      "vit_a": "",
+      "vit_c": "",
+      "calcium": "",
+      "iron": ""
+    },
+    {
+      "food" : "",
+      "price" : "",
+      "serving": "",
+      "calories": "",
+      "cholesterol": "",
+      "total_fat": "",
+      "carbs": "",
+      "fiber": "",
+      "protein": "",
+      "vit_a": "",
+      "vit_c": "",
+      "calcium": "",
+      "iron": ""
+    }
+  ],
+  "fruits" : [
+    {
+      "food" : "",
+      "price" : "",
+      "serving": "",
+      "calories": "",
+      "cholesterol": "",
+      "total_fat": "",
+      "carbs": "",
+      "fiber": "",
+      "protein": "",
+      "vit_a": "",
+      "vit_c": "",
+      "calcium": "",
+      "iron": ""
+    },
+    {
+      "food" : "",
+      "price" : "",
+      "serving": "",
+      "calories": "",
+      "cholesterol": "",
+      "total_fat": "",
+      "carbs": "",
+      "fiber": "",
+      "protein": "",
+      "vit_a": "",
+      "vit_c": "",
+      "calcium": "",
+      "iron": ""
+    }
+  ],
+  "breads and pastries" : [
+    {
+      "food" : "",
+      "price" : "",
+      "serving": "",
+      "calories": "",
+      "cholesterol": "",
+      "total_fat": "",
+      "carbs": "",
+      "fiber": "",
+      "protein": "",
+      "vit_a": "",
+      "vit_c": "",
+      "calcium": "",
+      "iron": ""
+    },
+    {
+      "food" : "",
+      "price" : "",
+      "serving": "",
+      "calories": "",
+      "cholesterol": "",
+      "total_fat": "",
+      "carbs": "",
+      "fiber": "",
+      "protein": "",
+      "vit_a": "",
+      "vit_c": "",
+      "calcium": "",
+      "iron": ""
+    }
+  ],
+  "dairy" : [
+    {
+      "food" : "",
+      "price" : "",
+      "serving": "",
+      "calories": "",
+      "cholesterol": "",
+      "total_fat": "",
+      "carbs": "",
+      "fiber": "",
+      "protein": "",
+      "vit_a": "",
+      "vit_c": "",
+      "calcium": "",
+      "iron": ""
+    },
+    {
+      "food" : "",
+      "price" : "",
+      "serving": "",
+      "calories": "",
+      "cholesterol": "",
+      "total_fat": "",
+      "carbs": "",
+      "fiber": "",
+      "protein": "",
+      "vit_a": "",
+      "vit_c": "",
+      "calcium": "",
+      "iron": ""
+    }
+  ],
+  "meat" : [
+    {
+      "food" : "",
+      "price" : "",
+      "serving": "",
+      "calories": "",
+      "cholesterol": "",
+      "total_fat": "",
+      "carbs": "",
+      "fiber": "",
+      "protein": "",
+      "vit_a": "",
+      "vit_c": "",
+      "calcium": "",
+      "iron": ""
+    },
+    {
+      "food" : "",
+      "price" : "",
+      "serving": "",
+      "calories": "",
+      "cholesterol": "",
+      "total_fat": "",
+      "carbs": "",
+      "fiber": "",
+      "protein": "",
+      "vit_a": "",
+      "vit_c": "",
+      "calcium": "",
+      "iron": ""
+    }
+  ],
+  "cereals" : [
+    {
+      "food" : "",
+      "price" : "",
+      "serving": "",
+      "calories": "",
+      "cholesterol": "",
+      "total_fat": "",
+      "carbs": "",
+      "fiber": "",
+      "protein": "",
+      "vit_a": "",
+      "vit_c": "",
+      "calcium": "",
+      "iron": ""
+    },
+    {
+      "food" : "",
+      "price" : "",
+      "serving": "",
+      "calories": "",
+      "cholesterol": "",
+      "total_fat": "",
+      "carbs": "",
+      "fiber": "",
+      "protein": "",
+      "vit_a": "",
+      "vit_c": "",
+      "calcium": "",
+      "iron": ""
+    }
+  ]
+}

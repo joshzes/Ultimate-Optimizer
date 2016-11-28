@@ -1,0 +1,14 @@
+body{
+	flex: 1 0 auto;
+	background-color: #FFBFD8;
+    overflow: hidden;
+    color: #637074;
+}
+
+div#header a{
+	color: #C67B98;
+}
+
+.btn{
+	background-color: #EF7977;
+}

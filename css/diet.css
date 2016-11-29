@@ -31,13 +31,20 @@ div#header a{
 }
 
 #division-tabs ul{
-	background-color: rgba(255,255,255,0.3);
+	background-color: rgba(255,255,255,0);
+	color: ;
+	font-family: lemon;
 }
 
 #diet-container{
+	font-family: godita;
 	margin-top: 5%;
 	margin-bottom: 2%;
 	height: 250px;
+}
+
+.collapsible-header label{
+	color: #404D54;
 }
 
 table{
@@ -47,6 +54,7 @@ table{
 }
 
 td{
+	font-family: roboto;
 	font-size: 10px;
 	height: 25px;
 	padding: 2px;

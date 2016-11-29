@@ -19,31 +19,44 @@
             <div class="animated fadeIn"><a href="index.html" class="hvr-underline-from-left" id="dietSolver">[ Go to Ultimate Optimizer ]</a></div>
         </div>
         <div class="row container animated fadeIn">
-
+            <div class="col s12" id="division-tabs">
+                <ul class="tabs">
+                    <li class="tab"><a href="#vegetables-container">Vegetables</a></li>
+                    <li class="tab"><a href="#fruits-container">Fruits</a></li>
+                    <li class="tab"><a href="#breads-container">Breads and Pastries</a></li>
+                    <li class="tab"><a href="#pasta-container">Pasta</a></li>
+                    <li class="tab"><a href="#dairy-container">Dairy and Eggs</a></li>
+                    <li class="tab"><a href="#meat-container">Meat and Fish</a></li>
+                    <li class="tab"><a href="#cereal-container">Cereals and Grains</a></li>
+                    <li class="tab"><a href="#soup-container">Soups</a></li>
+                    <li class="tab"><a href="#others-container">Others</a></li>
+                </ul>
             <div class="col m6 offset-m3 in-container" id="diet-container">
                 <form>
-                <div class="switch">
-                    <label>
-                      Minimize
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                      Maximize
-                    </label>
+                <div id="vegetables-container">
                 </div>
-                <input type="text" placeholder="Z = 1a + 2b + 1c - 1d" id="inputFx">
-                <label>subject to: </label>
-                <span><a href="#" id="addConstraint">
-                    <i class="material-icons">add_box</i>
-                </a></span>
-                <div id="constraints-list">
-                <input type="text" placeholder="a, b, c, d >= 0" class="constraint" id="constraint-1">
+                <div id="fruits-container">
+                </div>
+                <div id="breads-container">
+                </div>
+                <div id="pasta-container">
+                </div>
+                <div id="dairy-container">
+                </div>
+                <div id="meat-container">
+                </div>
+                <div id="cereal-container">
+                </div>
+                <div id="soup-container">
+                </div>
+                <div id="others-container">
                 </div>
                 </form>
-                <button class="btn waves-effect waves-light" id="submitSimplex">Solve</button>
             </div>
+                <button class="btn waves-effect waves-light" id="submitProblem">Solve</button>
 
             <div class="col m6 offset-m3 in-container hidden" id="results-container">
-                <button class="btn waves-effect waves-light" id="editSimplex">Edit Input</button>
+                <button class="btn waves-effect waves-light" id="editProblem">Edit Input</button>
             </div>
 
 
@@ -52,6 +65,7 @@
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/jquery-ui.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/foods.json"></script>
+        <script type="text/javascript" src="js/diet.js"></script>
       </body>
 </html>

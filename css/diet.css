@@ -12,3 +12,22 @@ div#header a{
 .btn{
 	background-color: #EF7977;
 }
+
+.collapsible, .collapsible-header{
+	background-color: rgba(0,0,0,0);
+	border: 0;
+	box-shadow: 0 0;
+	text-align: left;
+	margin-left: 10%;
+}
+
+.collapsible-body{
+	background-color: rgba(0,0,0,0.1);
+	border-bottom: 0;
+}
+
+ul.tabs{
+	height: 120%;
+	overflow-x: auto;
+}
+

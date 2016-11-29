@@ -37,14 +37,19 @@ div#header a{
 	display: block;
 }
 
-::-webkit-input-placeholder, label{
-	color: #808782;
-}
 
 .in-container::-webkit-scrollbar{
-	width: 6px;
+    width: 6px;
 }
 
 .in-container::-webkit-scrollbar-thumb{
 	background-color: #808782;
+}
+
+.tabs::-webkit-scrollbar{
+	height: 4px;
+}
+
+.tabs::-webkit-scrollbar-thumb{
+	background-color: #C5C8C6;
 }

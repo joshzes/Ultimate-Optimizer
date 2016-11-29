@@ -22,12 +22,32 @@ div#header a{
 }
 
 .collapsible-body{
-	background-color: rgba(0,0,0,0.1);
 	border-bottom: 0;
+	text-align: left;
 }
 
-ul.tabs{
-	height: 120%;
-	overflow-x: auto;
+#division-tabs{
+	margin-top: 5%;
 }
 
+#division-tabs ul{
+	background-color: rgba(255,255,255,0.3);
+}
+
+#diet-container{
+	margin-top: 5%;
+	margin-bottom: 2%;
+	height: 250px;
+}
+
+table{
+	width: 50%;
+	margin-left: 30%;
+	border: 1px solid black;
+}
+
+td{
+	font-size: 10px;
+	height: 25px;
+	padding: 2px;
+}

@@ -2,7 +2,7 @@
 <html>
       <head>
         <title>Ultimate Optimizer</title>
-        <link rel="icon" href="img/icon.png" type="image/png" /> <!-- change me -->
+        <link rel="icon" href="img/icon.png" type="image/png" />
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
         <link type="text/css" rel="stylesheet" href="css/fonts.css">
         <link type="text/css" rel="stylesheet" href="css/animate.css"/>
@@ -42,7 +42,20 @@
                 <button class="btn waves-effect waves-light" id="submitSimplex">Solve</button>
             </div>
 
-            <div class="col m6 offset-m3 in-container hidden" id="tableau-container">
+            <div class="row col m6 offset-m3 in-container hidden" id="tableau-container">
+                <div class="col m1" id="prev-link">
+                    <a href="#" id="prev-tableau">
+                        <i class="material-icons">keyboard_arrow_left</i>
+                    </a>
+                </div>
+                <table class="col m10" id="tableau">
+                    <span id="current-tableau">0</span>
+                </table>
+                <div class="col m1" id="next-link">
+                <a href="#" id="next-tableau">
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </a>
+                </div>
                 <button class="btn waves-effect waves-light" id="editSimplex">Edit Input</button>
             </div>
 

@@ -18,3 +18,36 @@ input.constraint{
 	vertical-align: text-bottom;
 	color: #28AFB0;
 }
+
+#tableau-container{
+	margin-left: 17%;
+	margin-top: 5%;
+	height: 500px;
+	width: 600px;
+}
+
+thead{
+	background-color: rgba(100,100,100,0.1);
+	border-bottom: 1px solid gray;
+}
+
+thead td{
+	font-weight: 600;
+}
+
+table{
+	border: 1px solid gray;
+	margin-bottom: 10px;
+}
+
+td{
+	text-align: center;
+}
+
+#prev-link i, #next-link i{
+	margin-top: 100px;
+}
+
+#current-tableau{
+	display: none;
+}

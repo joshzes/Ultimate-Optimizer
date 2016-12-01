@@ -20,10 +20,10 @@ input.constraint{
 }
 
 #tableau-container{
-	margin-left: 17%;
+	margin-left: 8%;
 	margin-top: 5%;
 	height: 500px;
-	width: 600px;
+	width: 770px;
 }
 
 thead{
@@ -38,6 +38,7 @@ thead td{
 table{
 	border: 1px solid gray;
 	margin-bottom: 10px;
+	table-layout: fixed;
 }
 
 td{

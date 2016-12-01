@@ -2,8 +2,10 @@ var mode 	// 1 for maximize, 0 for minimize
 var mat = [];	// will contain initial tableau
 var tableaus = [];	// will contain collection of tableaus
 var vars = [];
+var headers = [];
 var slack_var = [];
 var fx;
+var max_iteration = 100;
 
 function simplex(optMode, fxString, constraintsList){
 	console.log("Setting up tableau...");
@@ -16,23 +18,22 @@ function simplex(optMode, fxString, constraintsList){
 	var tableau_var = [];
 
 	for(var i = 0; i < vars.length; i++){
-		tableau_var[i] = vars[i];
+		headers[i] = vars[i];
 	}
 
 	for(var i = 0; i < constraintsList.length; i++){
-		tableau_var.push("s" + (i+1));
+		headers.push("s" + (i+1));
+		slack_var[i] = ("s" + (i+1));
 	}
 
-	tableau_var.push("Z", "RHS");
-
-	mat[0] = tableau_var;
+	headers.push("Z", "RHS");
 
 	 constraintsList.forEach(function(part, index, arr){
-	 	slack_var[index] = ('s' + parseInt(index+1));
-	 	tableau_var = [];
 	 	var slack = 1;
+	 	tableau_var = [];
 	 	if((arr[index]).indexOf(">") != -1 && mode == 1) slack = -1;
-		var str = (arr[index]).replace(/[^a-z0-9\+\-\.\=]/g, "");
+	 	if((arr[index]).indexOf("<") != -1 && mode == 0) slack = -1;
+		var str = (arr[index]).replace(/[^a-z0-9\+\-\.\=]/g, "");			// str contains constraint function
 
 		// add variables per constraint
 		vars.forEach(function(data){
@@ -43,37 +44,29 @@ function simplex(optMode, fxString, constraintsList){
 				for(var i = pos; i >= 0; i--){
 					if(str[i] == '+'){
 						coeff = parseFloat(str.substr(i+1, pos-1));
-						coeff = coeff ? coeff : 1;
+					//	coeff = coeff ? coeff : 1;
 						break;
 		  			}
 		  			else if(str[i] == '-'){
 		  				coeff = 0 - parseFloat(str.substr(i+1, pos-1));
-		  				coeff = coeff ? coeff : -1;
+		  			//	coeff = coeff ? coeff : -1;
 		  				break;
 		  			}
 		  			else if(i == 0){
 						coeff = parseFloat(str.substr(i, pos));
-						coeff = coeff ? coeff : 1;
+					//	coeff = coeff ? coeff : 1;
 						break;
 		  			}
 				}
 			}
 
-			tableau_var.push(coeff);
+			tableau_var.push(slack * coeff);
 		});
-		
-		// add slack variables
-		for(var i = 0; i < constraintsList.length; i++){			
-			if(index == i) tableau_var.push(slack);
-			else tableau_var.push(0);
-		}
-		// add Z
-		tableau_var.push(0);
 
 		// add RHS
 		for(var i = 0; i <= str.length; i++){
 			if(str[i] == '='){
-				tableau_var.push(parseFloat(str.substr(i+1, str.length)));
+				tableau_var.push(slack * parseFloat(str.substr(i+1, str.length)));
 				break;
 			}
 		}
@@ -109,58 +102,53 @@ function simplex(optMode, fxString, constraintsList){
 	  			}
 			}
 		}
-			tableau_var.push(0 - coeff);
+		if(mode == 1) tableau_var.push(-coeff);
+		else tableau_var.push(coeff);
 	});
-		
-	for(var i = 0; i < constraintsList.length; i++){
-		tableau_var.push(0);
-	}
 	
-	tableau_var.push(1, 0);
+	tableau_var.push(0);
 		
 	mat.push(tableau_var);
 	
-	if(mode == 0) transpose();
+//	if(mode == 0) transpose();
+//	else addSlack(); // add slack and Z
 
 	tableaus[0] = mat;
 
-	console.log(mat);
+	showTableau(mat);
 
 	performOps();	// start iteration
 }
 
 function performOps(){
-	console.log("Solving problem...");
-	var tempMat = [[]]
+	var iterationC = 0;
+	var tempMat = [[]];
 
-	while(1){
+	var pivotCol_value = Math.min.apply(Math, mat[mat.length - 1]);
+	var pivotCol_i = (mat[mat.length - 1]).indexOf(pivotCol_value);
 
-	var prev = tableaus[tableaus.length-1];
+	console.log(mat);
+
+	while(pivotCol_value < 0){
+	
+	iterationC++;
+	if(iterationC > max_iteration){
+		alert("Not feasible");
+		return;
+	}
 
 	tempMat = (tableaus[tableaus.length - 1]).map(function(arr) {
    		return arr.slice();
 	});	// create a copy of the prev matrix
 
-	console.log(tempMat);
-
-	var temp = []
 	var TR = [];
+	var temp = [];
 
-	// find pivot column (smallest non-negative)
-	var pivotCol_value = Math.min.apply(Math, tempMat[tempMat.length - 1]);
-	if(pivotCol_value >= 0) break;
-
-	var pivotCol_i = (tempMat[tempMat.length - 1]).indexOf(pivotCol_value);
-
-	for(var i = 1; i < tempMat.length - 1; i++){
-		TR[i-1] = tempMat[i][(tempMat[i]).length - 1] / tempMat[i][pivotCol_i];
-		TR[i-1] = TR[i-1] || -1;
-		if(TR[i-1] < 0) TR[i-1] = 9999;
+	for(var i = 0; i < tempMat.length; i++){
+		if(tempMat[i][(tempMat[i]).length - 1] / tempMat[i][pivotCol_i] <= 0) TR[i] = Infinity;
+		else TR[i] = tempMat[i][(tempMat[i]).length - 1] / tempMat[i][pivotCol_i];
 	}
-
-	var pivotRow_value = Math.min.apply(Math, TR);
-	var pivotRow_i = TR.indexOf(pivotRow_value) + 1;
-
+	var pivotRow_i = TR.indexOf(Math.min.apply(Math, TR));
 	var pivotValue = tempMat[pivotRow_i][pivotCol_i];
 
 	var pivotRow = tempMat[pivotRow_i];
@@ -168,7 +156,7 @@ function performOps(){
 		pivotRow[i] = pivotRow[i]/pivotValue;
 	}
 
-	for(var j = 1; j < tempMat.length; j++){
+	for(var j = 0; j < tempMat.length; j++){
 		if(j!=pivotRow_i){
 			var t = tempMat[j][pivotCol_i];
 				for(var i = 0; i < pivotRow.length; i++){
@@ -179,6 +167,10 @@ function performOps(){
 	}
 
 	tableaus.push(tempMat);
+
+	pivotCol_value = Math.min.apply(Math, tempMat[tempMat.length - 1]);
+	pivotCol_i = (tempMat[tempMat.length - 1]).indexOf(pivotCol_value);
+
 	}
 
 	solveProblem(tempMat);
@@ -186,6 +178,7 @@ function performOps(){
 
 function solveProblem(fmat){
 	console.log(fmat);
+	showTableau(fmat);
 
 	var var_row = [];
 
@@ -216,17 +209,50 @@ function solveProblem(fmat){
 
 function transpose(){
 	
-	for(var i = 0; i < (mat.length - 2); i++){
+	console.log("Transposing...");
+
+	for(var i = 0; i < mat.length; i++){
 		for(var j = 0; j < i; j++){
-      		var temp = mat[i+1][j];
-      		mat[i+1][j] = mat[j+1][i];
-    		mat[j+1][i] = temp;
+      		var temp = mat[i][j];
+      		mat[i][j] = mat[j][i];
+    		mat[j][i] = temp;
 		}
 	}
 
-	for(var j = 0; j < mat.length - 1; j++){
-      		var temp = mat[mat.length-1][j];
-      		mat[mat.length-1][j] = -(mat[j+1][mat[0].length - 1]);
-      		mat[j+1][mat[0].length - 1] = -temp;
-	}	
+
+	// fix headers
+	headers = [];
+	for(var i = 0; i < slack_var.length; i++){
+		headers.push(slack_var[i]);
+	}
+	for(var i = 0; i < vars.length; i++){
+		headers.push(vars[i]);
+	}
+	headers.push("Z", "RHS");
+
+	// cut 2d array
+	for(var i = 0; i < mat.length; i++){
+		if(mat[i][0] === undefined){
+			mat.splice(i, 1);
+			i--;
+   		}
+	}
+
+	// add other values
+	var temp;
+	for(var i = 0; i < mat.length; i++){
+		mat[i][headers.length-1] = parseFloat(mat[i][slack_var.length]);
+		for(var j = 0; j < headers.length-1; j++){
+      		if(j >= slack_var.length){
+      			if(j-slack_var.length == i)
+	      			mat[i][j] = 1;
+	      		else mat[i][j] = 0;
+      		}
+		}
+	}
+
+	// negate last row
+	for(var j = 0; j < headers.length-1; j++){
+	 	mat[mat.length-1][j] = - mat[mat.length - 1][j];
+	}
 }

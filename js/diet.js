@@ -51,7 +51,9 @@ function readData(data){
 
 $("#submitProblem").click(function(){
 	var idSelector = function() { return this.id; };
-	checkedFoods = $(":checkbox:checked").map(idSelector).get();
+//	checkedFoods = $(":checkbox:checked").map(idSelector).get();
+	checkedFoods = ["frozenbroccoli", "carrotsraw", "celeryraw", "frozencorn", "lettuceicebergraw", "pepperssweetraw", "potatoesbaked", "tofu", "tomatoredriperaw", "applerawwskin", "banana", "grapes", "kiwifruitrawfresh", "oranges", "bagels", "wheatbread", "whitebread", "oatmealcookies", "spaghettiwsauce", "roastedchicken"];
+//	checkedFoods = ["frozenbroccoli", "potatoesbaked", "whitebread", "tofu", "oatmealcookies", "roastedchicken", "wheatbread"];
 	setupProblem();
 });
 
@@ -68,7 +70,8 @@ function setupProblem(){
 			}
 			});
 		});
-		eq += "(" + f['price'] + " * " + String.fromCharCode(97 + i) + ")";
+		if(String.fromCharCode(97 + i) == 'e') eq += "(" + f['price'] + " * " + String.fromCharCode(122) + ")";
+		else eq += "(" + f['price'] + " * " + String.fromCharCode(97 + i) + ")";
 		if(i != checkedFoods.length - 1) eq += " + "
 		foods[i] = f;
 	}
@@ -77,7 +80,8 @@ function setupProblem(){
 	for(var i = 0; i < nutr.length; i++){
 		var tempConst = "";
 		for(var j = 0; j < foods.length; j++){
-			tempConst += "(" + foods[j][nutr[i]] + " * " + String.fromCharCode(97 + j) + ")";			
+			if(String.fromCharCode(97 + j) == 'e') tempConst += "(" + foods[j][nutr[i]] + " * " + String.fromCharCode(122) + ")";			
+			else tempConst += "(" + foods[j][nutr[i]] + " * " + String.fromCharCode(97 + j) + ")";			
 			if(j != foods.length - 1) tempConst += " + ";
 			else tempConst += " >= " + min[i];
 		}
@@ -87,25 +91,32 @@ function setupProblem(){
 	for(var i = 0; i < nutr.length; i++){
 		var tempConst = "";
 		for(var j = 0; j < foods.length; j++){
-			tempConst += "(" + foods[j][nutr[i]] + " * " + String.fromCharCode(97 + j) + ")";			
+			if(String.fromCharCode(97 + j) == 'e') tempConst += "(" + foods[j][nutr[i]] + " * " + String.fromCharCode(122) + ")";			
+			else tempConst += "(" + foods[j][nutr[i]] + " * " + String.fromCharCode(97 + j) + ")";
 			if(j != foods.length - 1) tempConst += " + ";
 			else tempConst += " <= " + max[i];
 		}
 		constraints.push(tempConst);
 	}
 
+	// for(var i = 0; i < foods.length; i++){
+	// 	var tempConst = "1 * ";
+	// 	if(String.fromCharCode(97 + j) == 'e') tempConst += String.fromCharCode(122) + ">= 0";
+	// 	else tempConst += String.fromCharCode(97 + i) + ">= 0";
+	// 	constraints.push(tempConst);
+	// }
+
 	for(var i = 0; i < foods.length; i++){
-		var tempConst = "";
-		tempConst += String.fromCharCode(97 + i) + ">= 0";
+		var tempConst = "1 * ";
+		if(String.fromCharCode(97 + j) == 'e') tempConst += String.fromCharCode(122) + "<= 0";
+		else tempConst += String.fromCharCode(97 + i) + "<= 10";
 		constraints.push(tempConst);
 	}
 
-	for(var i = 0; i < foods.length; i++){
-		var tempConst = "";
-		tempConst += String.fromCharCode(97 + i) + "<= 10";
-		constraints.push(tempConst);
-	}
-
+	console.log(eq);
+	for(var i = 0; i < constraints.length; i++)
+		console.log(constraints[i]);
 
 	simplex(0, eq, constraints);
+//	showTableau(fmat);
 }

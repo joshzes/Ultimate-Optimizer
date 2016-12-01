@@ -62,17 +62,17 @@ function showTableau(mat){
 	var row;
 
 	content += "<thead><tr>"
-	for(var j = 0; j < (mat[0]).length; j++){
-			content += "<td>" + mat[0][j] + "</td>"
+	for(var j = 0; j < headers.length; j++){
+			content += "<td>" + headers[j] + "</td>"
 	}
 	content += "</tr></thead>"
 
 	content += "<tbody>"
-	for(var i = 1; i < mat.length; i++){
+	for(var i = 0; i < mat.length; i++){
 		content += "<tr>"
 		row = mat[i];
 		for(var j = 0; j < row.length; j++){
-			content += "<td>" + parseFloat((row[j]).toFixed(4)) + "</td>"
+			content += "<td>" + row[j]/*parseFloat((row[j]).toFixed(4))*/ + "</td>"
 		}
 		content += "</tr>"
 	}

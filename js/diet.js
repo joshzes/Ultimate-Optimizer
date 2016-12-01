@@ -53,6 +53,7 @@ $("#submitProblem").click(function(){
 	var idSelector = function() { return this.id; };
 //	checkedFoods = $(":checkbox:checked").map(idSelector).get();
 	checkedFoods = ["frozenbroccoli", "carrotsraw", "celeryraw", "frozencorn", "lettuceicebergraw", "pepperssweetraw", "potatoesbaked", "tofu", "tomatoredriperaw", "applerawwskin", "banana", "grapes", "kiwifruitrawfresh", "oranges", "bagels", "wheatbread", "whitebread", "oatmealcookies", "spaghettiwsauce", "roastedchicken"];
+//	checkedFoods = ["frozenbroccoli", "carrotsraw", "celeryraw", "frozencorn", "lettuceicebergraw", "pepperssweetraw"];
 //	checkedFoods = ["frozenbroccoli", "potatoesbaked", "whitebread", "tofu", "oatmealcookies", "roastedchicken", "wheatbread"];
 	setupProblem();
 });

@@ -24,6 +24,7 @@ function simplex(optMode, fxString, constraintsList){
 	for(var i = 0; i < constraintsList.length; i++){
 		headers.push("s" + (i+1));
 		slack_var[i] = ("s" + (i+1));
+		console.log(i + " -> " + constraintsList[i]);
 	}
 
 	headers.push("Z", "RHS");
@@ -44,17 +45,14 @@ function simplex(optMode, fxString, constraintsList){
 				for(var i = pos; i >= 0; i--){
 					if(str[i] == '+'){
 						coeff = parseFloat(str.substr(i+1, pos-1));
-					//	coeff = coeff ? coeff : 1;
 						break;
 		  			}
 		  			else if(str[i] == '-'){
 		  				coeff = 0 - parseFloat(str.substr(i+1, pos-1));
-		  			//	coeff = coeff ? coeff : -1;
 		  				break;
 		  			}
 		  			else if(i == 0){
 						coeff = parseFloat(str.substr(i, pos));
-					//	coeff = coeff ? coeff : 1;
 						break;
 		  			}
 				}
@@ -110,12 +108,12 @@ function simplex(optMode, fxString, constraintsList){
 		
 	mat.push(tableau_var);
 	
-//	if(mode == 0) transpose();
-//	else addSlack(); // add slack and Z
+	if(mode == 0) transpose();
+	else addSlack(); // add slack and Z
 
 	tableaus[0] = mat;
 
-	showTableau(mat);
+//	showTableau(mat);
 
 	performOps();	// start iteration
 }
@@ -178,7 +176,6 @@ function performOps(){
 
 function solveProblem(fmat){
 	console.log(fmat);
-	showTableau(fmat);
 
 	var var_row = [];
 
@@ -202,9 +199,20 @@ function solveProblem(fmat){
 		}
 	}
 
-	console.log("Z = " + fmat[fmat.length-1][var_row.length]);
-	// var eq = eval(fx);
-	// alert(fx);
+	alert("Z = " + fmat[fmat.length-1][var_row.length]);
+}
+
+function addSlack(){
+	for(var i = 0; i < mat.length; i++){
+		mat[i][headers.length-1] = parseFloat(mat[i][vars.length]);
+		for(var j = 0; j < headers.length-1; j++){
+      		if(j >= vars.length){
+      			if(j-vars.length == i)
+	      			mat[i][j] = 1;
+	      		else mat[i][j] = 0;
+      		}
+		}
+	}
 }
 
 function transpose(){
@@ -253,6 +261,7 @@ function transpose(){
 
 	// negate last row
 	for(var j = 0; j < headers.length-1; j++){
+		if(j == headers.length-2) break;
 	 	mat[mat.length-1][j] = - mat[mat.length - 1][j];
 	}
 }

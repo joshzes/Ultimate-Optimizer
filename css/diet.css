@@ -42,9 +42,9 @@ div#header a{
 	margin-bottom: 2%;
 	height: 250px;
 	/* remove after debugging */
-	width: 1700px;
+	/* width: 1700px;
 	margin-left: -200px;
-	height: 500px;
+	height: 500px; */
 }
 
 .collapsible-header label{

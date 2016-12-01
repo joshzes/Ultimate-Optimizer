@@ -13,12 +13,17 @@ $("#submitSimplex").click(function(){
 
 	var optMode = 0;
 //	var fxString = "W = 1*a + 1*b + 1*c"
-//	var constraintsList = ["1*a + 2*b + c >= 30", "6*b + c <= 54", "1*a + 1*b + 2*c >= 20"];
+//	var constraintsList = ["1*a + 2*b + c >= 30", "0*a + 6*b + c <= 54", "1*a + 1*b + 2*c >= 20"];
 	
 	var fxString = "W = 1*a + 0.5*b + 2.5*c + 3*d"
-	var constraintsList = ["1.5a + 1b + 2d >= 35", "2b + 6c + 4d >= 120", "1a + 1b + 1c + 1d >= 50", "0.5a + 2.5c + 1.5d >= 75"];
-	simplex(optMode, fxString, constraintsList);
+	var constraintsList = ["1.5*a + 1*b + 2*d >= 35", "2*b + 6*c + 4*d >= 120", "1*a + 1*b + 1*c + 1*d >= 50", "0.5*a + 2.5*c + 1.5*d >= 75"];
 
+	// var optMode = 1;
+	// var fxString = "Z = 150r + 175p";
+	// var constraintsList = ["7r + 11p <= 77", "10r + 8p <= 80", "1r <= 9", "1p <= 6"];
+
+
+	simplex(optMode, fxString, constraintsList);
 	showTableau(mat);
 
 	$('#simplex-container').slideUp(400);
@@ -72,7 +77,7 @@ function showTableau(mat){
 		content += "<tr>"
 		row = mat[i];
 		for(var j = 0; j < row.length; j++){
-			content += "<td>" + row[j]/*parseFloat((row[j]).toFixed(4))*/ + "</td>"
+			content += "<td>" + parseFloat((row[j]).toFixed(4)) + "</td>"
 		}
 		content += "</tr>"
 	}

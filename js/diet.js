@@ -51,14 +51,29 @@ function readData(data){
 
 $("#submitProblem").click(function(){
 	var idSelector = function() { return this.id; };
-//	checkedFoods = $(":checkbox:checked").map(idSelector).get();
-	checkedFoods = ["frozenbroccoli", "carrotsraw", "celeryraw", "frozencorn", "lettuceicebergraw", "pepperssweetraw", "potatoesbaked", "tofu", "tomatoredriperaw", "applerawwskin", "banana", "grapes", "kiwifruitrawfresh", "oranges", "bagels", "wheatbread", "whitebread", "oatmealcookies", "spaghettiwsauce", "roastedchicken"];
+	checkedFoods = $(":checkbox:checked").map(idSelector).get();
+//	checkedFoods = ["frozenbroccoli", "carrotsraw", "celeryraw", "frozencorn", "lettuceicebergraw", "pepperssweetraw", "potatoesbaked", "tofu", "tomatoredriperaw", "applerawwskin", "banana", "grapes", "kiwifruitrawfresh", "oranges", "bagels", "wheatbread", "whitebread", "oatmealcookies", "spaghettiwsauce", "roastedchicken"];
 //	checkedFoods = ["frozenbroccoli", "carrotsraw", "celeryraw", "frozencorn", "lettuceicebergraw", "pepperssweetraw"];
 //	checkedFoods = ["frozenbroccoli", "potatoesbaked", "whitebread", "tofu", "oatmealcookies", "roastedchicken", "wheatbread"];
 	setupProblem();
+	$('#submitProblem').hide();
+	$('#diet-container').slideUp(400);
+
+	$('#results-container').removeClass("animated slideOutDown hidden").addClass("visible");
 });
 
+$("#editProblem").click(function(){
+	$('#results-container').addClass("animated slideOutDown");
+	$('#diet-container').slideDown(800);
+	$('#tableau').html("");
+
+});
+
+
 function setupProblem(){
+
+	// convert input to equations
+
 	var eq = "C = ";
 	var constraints = [];
 	var foods = []
@@ -100,13 +115,6 @@ function setupProblem(){
 		constraints.push(tempConst);
 	}
 
-	// for(var i = 0; i < foods.length; i++){
-	// 	var tempConst = "1 * ";
-	// 	if(String.fromCharCode(97 + j) == 'e') tempConst += String.fromCharCode(122) + ">= 0";
-	// 	else tempConst += String.fromCharCode(97 + i) + ">= 0";
-	// 	constraints.push(tempConst);
-	// }
-
 	for(var i = 0; i < foods.length; i++){
 		var tempConst = "1 * ";
 		if(String.fromCharCode(97 + j) == 'e') tempConst += String.fromCharCode(122) + "<= 0";
@@ -119,5 +127,6 @@ function setupProblem(){
 		console.log(constraints[i]);
 
 	simplex(0, eq, constraints);
-//	showTableau(fmat);
+	showTableau(final);
+	$('#cost').html("Cost = " + parseFloat(z.toFixed(4)));
 }

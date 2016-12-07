@@ -2,12 +2,20 @@ var mode 	// 1 for maximize, 0 for minimize
 var mat = [];	// will contain initial tableau
 var tableaus = [];	// will contain collection of tableaus
 var vars = [];
-var headers = [];
+var headers = [];		// top row of tableaus
 var slack_var = [];
 var fx;
 var max_iteration = 100;
+var z, final;
+var solxns = [];
+var var_row = [];
+var_row_bool = 0;
+
 
 function simplex(optMode, fxString, constraintsList){
+
+	// convert input to tableau
+
 	console.log("Setting up tableau...");
 	mode = optMode;
 	mat = []
@@ -113,8 +121,6 @@ function simplex(optMode, fxString, constraintsList){
 
 	tableaus[0] = mat;
 
-//	showTableau(mat);
-
 	performOps();	// start iteration
 }
 
@@ -164,6 +170,8 @@ function performOps(){
 		}
 	}
 
+	solxns.push(pivotRow_i, pivotCol_i, pivotValue);
+
 	tableaus.push(tempMat);
 
 	pivotCol_value = Math.min.apply(Math, tempMat[tempMat.length - 1]);
@@ -177,29 +185,26 @@ function performOps(){
 function solveProblem(fmat){
 	console.log(fmat);
 
-	var var_row = [];
+	final = fmat;
 
+	// find where it is equal to 1
 	for(var i = 0; i < fmat[0].length - 1; i++){
 		var allZero = 1;
 		var oneOne = 0;
-		for(var j = 1; j < fmat.length; j++){
+		var pos = -1;
+		for(var j = 0; j < fmat.length; j++){
 			if(fmat[j][i] == 1){
 				if(oneOne) oneOne = 0;
-				else oneOne = j;
+				else oneOne = 1;
+				pos = j;
 			}
 			else if(fmat[j][i] != 0) allZero = 0;
 		}
-		if(oneOne && allZero) var_row.push(oneOne);
-		else var_row.push(-1);
+		var_row.push(pos);
+		var_row_bool = 1;
 	}
 
-	for(var i = 0; i < vars.length; i++){
-		if(var_row[i] != -1){
-			window[vars[i]] = fmat[var_row[i]][fmat[0].length-1];
-		}
-	}
-
-	alert("Z = " + fmat[fmat.length-1][var_row.length]);
+	z = fmat[fmat.length-1][var_row.length];
 }
 
 function addSlack(){
